@@ -1,28 +1,87 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeNavigator from './homeStack';
-import HomeScreen from '../screens/HomeScreen';
-import MoviesScreen from '../screens/MoviesScreen';
 import MoviesStack from './moviesStakc';
+import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
   return (
     <Tab.Navigator
-      screenOptions={{
+      screenOptions={({route, navigation}) => ({
         headerShown: false,
+        tabBarActiveTintColor: '#ca9f32',
         tabBarStyle: {
-          paddingHorizontal: 5,
+          paddingHorizontal: 10,
           paddingTop: 5,
           backgroundColor: 'rgba(34,36,40,1)',
-          borderTopWidth: 0,
+          borderTopWidth: null,
         },
-      }}>
-      <Tab.Screen name="HomeTab" component={HomeNavigator} />
-      <Tab.Screen name="search" component={HomeNavigator} />
-      <Tab.Screen name="movies" component={MoviesStack} />
-      <Tab.Screen name="favorites" component={HomeNavigator} />
+        tabBarIcon: () => {
+          // if (route.name === 'Home') {
+          //   return focused ? (
+          //     <Icons name="home" size={28} color="#ca9f32" />
+          //   ) : (
+          //     <Icons name="home" size={28} color="#e4dfd4" />
+          //   );
+          // } else if (route.name === 'Search') {
+          //   return focused ? (
+          //     <Icons name="magnify" size={28} color="#ca9f32" />
+          //   ) : (
+          //     <Icons name="magnify" size={28} color="#e4dfd4" />
+          //   );
+          // } else if (route.name === 'Movies') {
+          //   return focused ? (
+          //     <Icons name="movie" size={28} color="#ca9f32" />
+          //   ) : (
+          //     <Icons name="movie" size={28} color="#e4dfd4" />
+          //   );
+          // } else if (route.name === 'Favorites') {
+          //   return focused ? (
+          //     <Icons name="cards-heart" size={28} color="#ca9f32" />
+          //   ) : (
+          //     <Icons name="cards-heart" size={28} color="#e4dfd4" />
+          //   );
+          // }
+        },
+      })}>
+      <Tab.Screen
+        name="Home"
+        component={HomeNavigator}
+        options={{
+          tabBarIcon: ({color, size}) => (
+            <Icons name="home" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Search"
+        component={HomeNavigator}
+        options={{
+          tabBarIcon: ({color, size}) => (
+            <Icons name="magnify" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Movies"
+        component={MoviesStack}
+        options={{
+          tabBarIcon: ({color, size}) => (
+            <Icons name="movie" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Favorites"
+        component={HomeNavigator}
+        options={{
+          tabBarIcon: ({color, size}) => (
+            <Icons name="cards-heart" color={color} size={size} />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 };

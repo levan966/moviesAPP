@@ -1,6 +1,7 @@
 import {StyleSheet, Text, Image, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import CustomText from './CustomText';
+import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const MovieCardComponent = ({
   style,
@@ -25,7 +26,7 @@ const MovieCardComponent = ({
         <View style={styles.info}>
           {grade ? (
             <View style={styles.rating}>
-              <Text style={styles.star}>⭐</Text>
+              <Icons name="star" size={16} color="#e0b423" />
               <Text style={styles.grade}>{grade}</Text>
             </View>
           ) : null}
