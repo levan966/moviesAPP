@@ -32,12 +32,6 @@ const DetailsScreen = ({route}) => {
     getDetails();
   }, []);
 
-  // useEffect(() => {
-  //   axios.get(`${baseurl}+${id}+/videos+${apiKey}`).then(response => {
-  //     setDetails(response.data);
-  //   });
-  // }, []);
-
   return (
     <Screen>
       <View style={{padding: 10}}>

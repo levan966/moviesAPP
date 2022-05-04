@@ -52,7 +52,11 @@ const MoviesScreen = ({navigation}) => {
           <CustomText style={styles.category}>TV Series</CustomText>
         </TouchableOpacity>
       </View>
-      {category === 'movies' ? <Movies data={movies} /> : <Movies data={tv} />}
+      {category === 'movies' ? (
+        <Movies data={movies} {...{setPage}} />
+      ) : (
+        <Movies data={tv} {...{setPage}} />
+      )}
     </Screen>
   );
 };

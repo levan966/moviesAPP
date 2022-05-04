@@ -3,6 +3,8 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeNavigator from './homeStack';
 import MoviesStack from './moviesStakc';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
+import SearchScreen from '../screens/SearchScreen';
+import FavoriteScreen from '../screens/FavoriteScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -12,6 +14,11 @@ const TabNavigator = () => {
       screenOptions={({route, navigation}) => ({
         headerShown: false,
         tabBarActiveTintColor: '#ca9f32',
+        tabBarInactiveTintColor: '#e4dfd4',
+        tabBarLabelStyle: {
+          marginTop: 0,
+          fontSize: 13,
+        },
         tabBarStyle: {
           paddingHorizontal: 10,
           paddingTop: 5,
@@ -57,7 +64,7 @@ const TabNavigator = () => {
       />
       <Tab.Screen
         name="Search"
-        component={HomeNavigator}
+        component={SearchScreen}
         options={{
           tabBarIcon: ({color, size}) => (
             <Icons name="magnify" color={color} size={size} />
@@ -75,7 +82,7 @@ const TabNavigator = () => {
       />
       <Tab.Screen
         name="Favorites"
-        component={HomeNavigator}
+        component={FavoriteScreen}
         options={{
           tabBarIcon: ({color, size}) => (
             <Icons name="cards-heart" color={color} size={size} />

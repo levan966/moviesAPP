@@ -16,7 +16,7 @@ const MoviesStack = () => {
           backgroundColor: '#555d7762',
         },
       }}>
-      <Stack.Screen name="Movies" component={MoviesScreen} />
+      <Stack.Screen name="Movie" component={MoviesScreen} />
       <Stack.Screen name="Details" component={DetailsScreen} />
     </Stack.Navigator>
   );

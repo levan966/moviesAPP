@@ -9,7 +9,13 @@ const CategoryList = ({title, data}) => {
 
   return (
     <View style={styles.container}>
-      <CustomText style={{marginLeft: 20, fontSize: 26, fontWeight: '500'}}>
+      <CustomText
+        style={{
+          marginLeft: 20,
+          fontSize: 26,
+          fontWeight: '500',
+          color: '#ca9f32',
+        }}>
         {title}
       </CustomText>
       <View style={styles.category}>
