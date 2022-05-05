@@ -1,5 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, View, Image, ScrollView, FlatList} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Image,
+  ScrollView,
+  FlatList,
+  StatusBar,
+} from 'react-native';
 import axios from 'axios';
 import CustomText from '../components/CustomText';
 import Screen from '../components/Screen';

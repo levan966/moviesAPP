@@ -25,33 +25,6 @@ const TabNavigator = () => {
           backgroundColor: 'rgba(34,36,40,1)',
           borderTopWidth: null,
         },
-        tabBarIcon: () => {
-          // if (route.name === 'Home') {
-          //   return focused ? (
-          //     <Icons name="home" size={28} color="#ca9f32" />
-          //   ) : (
-          //     <Icons name="home" size={28} color="#e4dfd4" />
-          //   );
-          // } else if (route.name === 'Search') {
-          //   return focused ? (
-          //     <Icons name="magnify" size={28} color="#ca9f32" />
-          //   ) : (
-          //     <Icons name="magnify" size={28} color="#e4dfd4" />
-          //   );
-          // } else if (route.name === 'Movies') {
-          //   return focused ? (
-          //     <Icons name="movie" size={28} color="#ca9f32" />
-          //   ) : (
-          //     <Icons name="movie" size={28} color="#e4dfd4" />
-          //   );
-          // } else if (route.name === 'Favorites') {
-          //   return focused ? (
-          //     <Icons name="cards-heart" size={28} color="#ca9f32" />
-          //   ) : (
-          //     <Icons name="cards-heart" size={28} color="#e4dfd4" />
-          //   );
-          // }
-        },
       })}>
       <Tab.Screen
         name="Home"

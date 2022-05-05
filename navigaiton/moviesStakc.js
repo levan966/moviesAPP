@@ -10,14 +10,20 @@ const MoviesStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        // headerShown: false,
+        headerTintColor: '#e5e2d4dd',
         animation: 'fade_from_bottom',
-        headerStyle: {
-          backgroundColor: '#555d7762',
-        },
+        headerTransparent: true,
       }}>
-      <Stack.Screen name="Movie" component={MoviesScreen} />
-      <Stack.Screen name="Details" component={DetailsScreen} />
+      <Stack.Screen
+        name="Movie"
+        component={MoviesScreen}
+        options={{title: 'All Movies'}}
+      />
+      <Stack.Screen
+        name="Details"
+        component={DetailsScreen}
+        options={{title: 'Movie Information'}}
+      />
     </Stack.Navigator>
   );
 };

@@ -9,18 +9,20 @@ const HomeStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        // headerShown: false,
+        headerTintColor: '#e5e2d4dd',
         animation: 'fade_from_bottom',
-        headerStyle: {
-          backgroundColor: '#555d7762',
-        },
+        headerTransparent: true,
       }}>
       <Stack.Screen
         name="HomeScreen"
         component={HomeScreen}
         options={{title: 'Home'}}
       />
-      <Stack.Screen name="Details" component={DetailsScreen} />
+      <Stack.Screen
+        name="Details"
+        component={DetailsScreen}
+        options={{title: 'Movie Information'}}
+      />
     </Stack.Navigator>
   );
 };

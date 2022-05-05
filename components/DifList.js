@@ -9,6 +9,7 @@ const DifList = ({data, baseImageUrl, title}) => {
         <CustomText style={styles.text}>{title}</CustomText>
       </View>
       <FlatList
+        showsHorizontalScrollIndicator={false}
         horizontal={true}
         data={data}
         keyExtractor={item => item.id.toString()}
