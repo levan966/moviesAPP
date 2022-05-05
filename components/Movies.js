@@ -14,7 +14,6 @@ const Movies = ({data, setPage}) => {
       onEndReached={() => {
         setPage(page => page + 1);
       }}
-      onEndReachedThreshold={0.1}
       renderItem={({item}) => {
         return (
           <MovieCardComponent

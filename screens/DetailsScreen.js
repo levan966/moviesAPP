@@ -1,14 +1,14 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, Text, View, Image, ScrollView} from 'react-native';
+import {StyleSheet, View, Image, ScrollView, FlatList} from 'react-native';
 import axios from 'axios';
 import CustomText from '../components/CustomText';
 import Screen from '../components/Screen';
+import List from '../components/DifList';
 
 const DetailsScreen = ({route}) => {
   let {id} = route.params;
   const [details, setDetails] = useState();
-  const [video, setVideo] = useState();
-
+  const [actors, setActors] = useState([]);
   const runTime =
     Math.trunc(details?.runtime / 60) +
     'h' +
@@ -22,6 +22,12 @@ const DetailsScreen = ({route}) => {
   const baseurl = 'https://api.themoviedb.org/3/movie/';
   const apiKey = '?api_key=aa130e4e4d10a76fa0af5bf9b913dd35';
 
+  const getCast = () => {
+    axios.get(`${baseurl}+${id}/credits${apiKey}`).then(response => {
+      setActors(response.data.cast);
+    });
+  };
+
   const getDetails = () => {
     axios.get(`${baseurl}+${id}+${apiKey}`).then(response => {
       setDetails(response.data);
@@ -30,52 +36,56 @@ const DetailsScreen = ({route}) => {
 
   useEffect(() => {
     getDetails();
+    getCast();
   }, []);
 
   return (
     <Screen>
-      <View style={{padding: 10}}>
-        <CustomText style={{fontSize: 30, paddingRight: 20}}>
-          {details?.title}
-        </CustomText>
-        <View style={{flexDirection: 'row'}}>
-          <CustomText style={[styles.date]}>{date}</CustomText>
-          <CustomText style={[styles.date, {marginLeft: 20}]}>
-            {runTime}
+      <ScrollView>
+        <View style={{padding: 10}}>
+          <CustomText style={{fontSize: 30, paddingRight: 20}}>
+            {details?.title}
           </CustomText>
+          <View style={{flexDirection: 'row'}}>
+            <CustomText style={[styles.date]}>{date}</CustomText>
+            <CustomText style={[styles.date, {marginLeft: 20}]}>
+              {runTime}
+            </CustomText>
+          </View>
         </View>
-      </View>
-      <Image
-        source={{
-          uri: baseImageUrl + details?.backdrop_path,
-        }}
-        style={styles.cover}
-      />
-      <View style={styles.details}>
-        <View style={styles.poster}>
-          {details?.poster_path ? (
-            <Image
-              source={{
-                uri: baseImageUrl + details.poster_path,
-              }}
-              style={{width: '100%', height: 180}}
-            />
-          ) : null}
+        <Image
+          source={{
+            uri: baseImageUrl + details?.backdrop_path,
+          }}
+          style={styles.cover}
+        />
+        <View style={styles.details}>
+          <View style={styles.poster}>
+            {details?.poster_path ? (
+              <Image
+                source={{
+                  uri: baseImageUrl + details.poster_path,
+                }}
+                style={{width: '100%', height: 180}}
+              />
+            ) : null}
+          </View>
+          <View style={styles.description}>
+            <ScrollView
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+              style={{flexGrow: 0.7}}>
+              {details?.genres &&
+                details.genres.map(e => (
+                  <CustomText style={styles.genres}>{e.name}</CustomText>
+                ))}
+            </ScrollView>
+            <CustomText numberOfLines={6}>{details?.overview}</CustomText>
+            <CustomText numberOfLines={6}>{details?.id}</CustomText>
+          </View>
         </View>
-        <View style={styles.description}>
-          <ScrollView
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-            style={{flexGrow: 0.7}}>
-            {details?.genres &&
-              details.genres.map(e => (
-                <CustomText style={styles.genres}>{e.name}</CustomText>
-              ))}
-          </ScrollView>
-          <CustomText numberOfLines={6}>{details?.overview}</CustomText>
-          <CustomText numberOfLines={6}>{details?.id}</CustomText>
-        </View>
-      </View>
+        <List data={actors} {...{baseImageUrl}} title="Cast" />
+      </ScrollView>
     </Screen>
   );
 };
