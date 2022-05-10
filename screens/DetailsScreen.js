@@ -81,7 +81,7 @@ const DetailsScreen = ({route}) => {
             <ScrollView
               horizontal={true}
               showsHorizontalScrollIndicator={false}
-              style={{flexGrow: 0.7}}>
+              style={{flexGrow: 0.8}}>
               {details?.genres &&
                 details.genres.map(e => (
                   <CustomText style={styles.genres}>{e.name}</CustomText>

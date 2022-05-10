@@ -9,15 +9,7 @@ const CategoryList = ({title, data}) => {
 
   return (
     <View style={styles.container}>
-      <CustomText
-        style={{
-          marginLeft: 20,
-          fontSize: 26,
-          fontWeight: '500',
-          color: '#ca9f32',
-        }}>
-        {title}
-      </CustomText>
+      <CustomText style={styles.title}>{title}</CustomText>
       <View style={styles.category}>
         <FlatList
           horizontal={true}
@@ -49,6 +41,12 @@ export default CategoryList;
 const styles = StyleSheet.create({
   container: {
     marginTop: 22,
+  },
+  title: {
+    marginLeft: 20,
+    fontSize: 26,
+    fontWeight: '500',
+    color: '#ca9f32',
   },
   category: {
     marginTop: 16,

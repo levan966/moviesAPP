@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import {StyleSheet, View, TouchableOpacity} from 'react-native';
 import axios from 'axios';
 import CustomText from '../components/CustomText';
@@ -6,13 +6,13 @@ import Screen from '../components/Screen';
 import Movies from '../components/Movies';
 
 const MoviesScreen = ({navigation}) => {
-  const [result, setResult] = useState([]);
+  // const [result, setResult] = useState([]);
   const [category, setCategory] = useState('movies');
   const [movies, setMovies] = useState([]);
   const [tv, setTv] = useState([]);
   const [page, setPage] = useState(1);
 
-  const getMovies = () => {
+  const getMovies = useCallback(() => {
     axios
       .get(
         `https://api.themoviedb.org/3/movie/popular?api_key=aa130e4e4d10a76fa0af5bf9b913dd35&page=${page}`,
@@ -21,12 +21,12 @@ const MoviesScreen = ({navigation}) => {
         setPage(response.data.page);
         setMovies(results => [...results, ...response.data.results]);
       });
-  };
+  }, [page]);
 
   const getTVSeries = () => {
     axios
       .get(
-        `https://api.themoviedb.org/3/tv/popular?api_key=aa130e4e4d10a76fa0af5bf9b913dd35`,
+        'https://api.themoviedb.org/3/tv/popular?api_key=aa130e4e4d10a76fa0af5bf9b913dd35',
       )
       .then(response => {
         setPage(response.data.page);
@@ -40,7 +40,7 @@ const MoviesScreen = ({navigation}) => {
     } else {
       getTVSeries();
     }
-  }, [page, category]);
+  }, [page, category, getMovies]);
 
   return (
     <Screen>
