@@ -5,6 +5,7 @@ import MoviesStack from './moviesStakc';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import SearchScreen from '../screens/SearchScreen';
 import FavoriteScreen from '../screens/FavoriteScreen';
+import SearchStack from './SearchStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -37,7 +38,7 @@ const TabNavigator = () => {
       />
       <Tab.Screen
         name="Search"
-        component={SearchScreen}
+        component={SearchStack}
         options={{
           tabBarIcon: ({color, size}) => (
             <Icons name="magnify" color={color} size={size} />

@@ -3,16 +3,23 @@ import {StyleSheet, View, Image, TouchableOpacity} from 'react-native';
 import CustomText from './CustomText';
 import Separator from './Separator';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {baseImageUrl} from '../api/links';
+import {useNavigation} from '@react-navigation/native';
 
 const SearchResult = ({item}) => {
+  const navigation = useNavigation();
   return (
     <View>
-      <TouchableOpacity style={styles.container}>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('Details', item);
+        }}
+        style={styles.container}>
         {item.poster_path ? (
           <Image
             style={styles.image}
             source={{
-              uri: `https://image.tmdb.org/t/p/w500/${item.poster_path}`,
+              uri: `${baseImageUrl}${item.poster_path}`,
             }}
           />
         ) : (
@@ -26,7 +33,7 @@ const SearchResult = ({item}) => {
         <View style={styles.detailsContainer}>
           <CustomText>{item.original_title}</CustomText>
           <CustomText style={styles.detail}>
-            {(item.release_date = new Date().getFullYear())}
+            {new Date(item.release_date).getFullYear()}
           </CustomText>
           {item.vote_average !== 0 ? (
             <CustomText style={styles.detail}>

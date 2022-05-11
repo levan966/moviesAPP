@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View, Image, FlatList} from 'react-native';
+import {StyleSheet, View, Image, FlatList} from 'react-native';
 import React from 'react';
 import CustomText from './CustomText';
 

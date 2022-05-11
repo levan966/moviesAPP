@@ -1,16 +1,10 @@
-import React, {useState, useEffect} from 'react';
-import {
-  StyleSheet,
-  View,
-  Image,
-  ScrollView,
-  FlatList,
-  StatusBar,
-} from 'react-native';
+import React, {useState, useEffect, useCallback} from 'react';
+import {StyleSheet, View, Image, ScrollView} from 'react-native';
 import axios from 'axios';
 import CustomText from '../components/CustomText';
 import Screen from '../components/Screen';
 import List from '../components/DifList';
+import {baseImageUrl} from '../api/links';
 
 const DetailsScreen = ({route}) => {
   let {id} = route.params;
@@ -25,26 +19,25 @@ const DetailsScreen = ({route}) => {
     'm';
   let date = new Date(details?.release_date).getFullYear();
 
-  const baseImageUrl = 'https://image.tmdb.org/t/p/w500';
   const baseurl = 'https://api.themoviedb.org/3/movie/';
   const apiKey = '?api_key=aa130e4e4d10a76fa0af5bf9b913dd35';
 
-  const getCast = () => {
-    axios.get(`${baseurl}+${id}/credits${apiKey}`).then(response => {
+  const getCast = useCallback(() => {
+    axios.get(`${baseurl}${id}/credits${apiKey}`).then(response => {
       setActors(response.data.cast);
     });
-  };
+  }, [id]);
 
-  const getDetails = () => {
+  const getDetails = useCallback(() => {
     axios.get(`${baseurl}+${id}+${apiKey}`).then(response => {
       setDetails(response.data);
     });
-  };
+  }, [id]);
 
   useEffect(() => {
     getDetails();
     getCast();
-  }, []);
+  }, [getCast, getDetails]);
 
   return (
     <Screen>

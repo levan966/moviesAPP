@@ -1,13 +1,13 @@
-import {StyleSheet, Text, Image, TouchableOpacity, View} from 'react-native';
 import React from 'react';
+import {StyleSheet, Text, Image, TouchableOpacity, View} from 'react-native';
 import CustomText from './CustomText';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {baseImageUrl} from '../api/links';
 
 const MovieCardComponent = ({
   style,
   title,
   onPress,
-  basePosterApi = 'https://image.tmdb.org/t/p/w500/',
   poster_path,
   grade = null,
   cardWidth = 140,
@@ -21,7 +21,7 @@ const MovieCardComponent = ({
       <View style={{width: cardWidth, marginLeft: marginLeft}}>
         <Image
           style={[styles.image, {height: cardHeight, borderRadius, marginTop}]}
-          source={{uri: basePosterApi + poster_path}}
+          source={{uri: baseImageUrl + poster_path}}
         />
         <View style={styles.info}>
           {grade ? (
