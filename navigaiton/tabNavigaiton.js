@@ -3,7 +3,6 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeNavigator from './homeStack';
 import MoviesStack from './moviesStakc';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
-import SearchScreen from '../screens/SearchScreen';
 import FavoriteScreen from '../screens/FavoriteScreen';
 import SearchStack from './SearchStack';
 

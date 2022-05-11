@@ -1,8 +1,9 @@
 import {StyleSheet, View, Image, FlatList} from 'react-native';
 import React from 'react';
 import CustomText from './CustomText';
+import {baseImageUrl} from '../api/links';
 
-const DifList = ({data, baseImageUrl, title}) => {
+const DifList = ({data, title}) => {
   return (
     <View style={styles.container}>
       <View style={styles.title}>
@@ -45,18 +46,16 @@ const DifList = ({data, baseImageUrl, title}) => {
 export default DifList;
 
 const styles = StyleSheet.create({
-  container: {
-    marginVertical: 10,
-  },
   text: {
-    paddingVertical: 20,
-    alignSelf: 'center',
+    marginLeft: 20,
+    marginBottom: 20,
     fontSize: 30,
     color: '#ca9f32',
   },
   details: {
     width: 120,
     marginLeft: 20,
+    marginBottom: 20,
   },
   image: {
     borderRadius: 10,

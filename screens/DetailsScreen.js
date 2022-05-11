@@ -5,6 +5,7 @@ import CustomText from '../components/CustomText';
 import Screen from '../components/Screen';
 import List from '../components/DifList';
 import {baseImageUrl} from '../api/links';
+import FavoriteButton from '../components/FavoriteButton';
 
 const DetailsScreen = ({route}) => {
   let {id} = route.params;
@@ -17,6 +18,7 @@ const DetailsScreen = ({route}) => {
     '\xa0' +
     (details?.runtime % 60) +
     'm';
+
   let date = new Date(details?.release_date).getFullYear();
 
   const baseurl = 'https://api.themoviedb.org/3/movie/';
@@ -74,17 +76,17 @@ const DetailsScreen = ({route}) => {
             <ScrollView
               horizontal={true}
               showsHorizontalScrollIndicator={false}
-              style={{flexGrow: 0.8}}>
+              style={{flexGrow: 0.7}}>
               {details?.genres &&
                 details.genres.map(e => (
                   <CustomText style={styles.genres}>{e.name}</CustomText>
                 ))}
             </ScrollView>
             <CustomText numberOfLines={6}>{details?.overview}</CustomText>
-            <CustomText numberOfLines={6}>{details?.id}</CustomText>
           </View>
         </View>
-        <List data={actors} {...{baseImageUrl}} title="Cast" />
+        <FavoriteButton />
+        <List data={actors} title="Cast" />
       </ScrollView>
     </Screen>
   );
