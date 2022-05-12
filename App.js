@@ -7,7 +7,7 @@ import React from 'react';
  * @flow strict-local
  */
 
-import {StyleSheet, SafeAreaView} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import TabNavigator from './navigaiton/tabNavigaiton';
 

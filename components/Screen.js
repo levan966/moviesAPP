@@ -1,9 +1,11 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet, View, StatusBar} from 'react-native';
+import OfflineNotice from './OfflineNotice';
 
 const Screen = ({children, style}) => {
   return (
     <SafeAreaView style={[styles.screen, style]}>
+      <OfflineNotice />
       <StatusBar barStyle="light-content" />
       <View style={[styles.view, style]}>{children}</View>
     </SafeAreaView>
