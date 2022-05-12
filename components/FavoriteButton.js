@@ -39,13 +39,13 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#d3ba1a',
+    backgroundColor: '#d6ab1eff',
     marginVertical: 20,
     marginHorizontal: 20,
     paddingVertical: 10,
     paddingHorizontal: 15,
     borderRadius: 4,
-    borderWidth: 0.5,
+    borderWidth: 1,
     borderColor: '#d3ba1a',
   },
   addButoon: {

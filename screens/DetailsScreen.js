@@ -36,6 +36,11 @@ const DetailsScreen = ({route}) => {
     });
   }, [id]);
 
+  const AddToFavorites = () => {
+    axios.post();
+  };
+  const RemoveFromFavorites = () => {};
+
   useEffect(() => {
     getDetails();
     getCast();
