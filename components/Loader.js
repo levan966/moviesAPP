@@ -3,19 +3,26 @@ import ContentLoader, {Rect, Circle, Path} from 'react-content-loader/native';
 
 const MyLoader = props => (
   <ContentLoader
-    speed={2}
+    style={{marginTop: 20}}
+    speed={0.5}
     width={400}
-    height={460}
-    viewBox="0 0 400 460"
-    backgroundColor="#f6f5f4"
-    foregroundColor="#ecebeb"
+    height="100%"
+    backgroundColor="#b5a99d"
+    foregroundColor="#fafafa"
     {...props}>
-    <Rect x="21" y="155" rx="2" ry="2" width="99" height="15" />
-    <Rect x="24" y="24" rx="2" ry="2" width="95" height="115" />
-    <Rect x="143" y="24" rx="0" ry="0" width="98" height="110" />
-    <Rect x="271" y="25" rx="0" ry="0" width="100" height="108" />
-    <Rect x="148" y="155" rx="0" ry="0" width="90" height="15" />
-    <Rect x="271" y="152" rx="0" ry="0" width="100" height="15" />
+    <Rect x="26" y="30" rx="2" ry="2" width="102" height="28" />
+    <Rect x="25" y="80" rx="2" ry="2" width="124" height="164" />
+    <Rect x="26" y="260" rx="2" ry="2" width="124" height="15" />
+
+    <Rect x="184" y="80" rx="2" ry="2" width="124" height="164" />
+    <Rect x="185" y="260" rx="2" ry="2" width="124" height="15" />
+
+    <Rect x="26" y="340" rx="2" ry="2" width="102" height="28" />
+    <Rect x="25" y="390" rx="2" ry="2" width="124" height="164" />
+    <Rect x="26" y="570" rx="2" ry="2" width="124" height="15" />
+
+    <Rect x="184" y="390" rx="2" ry="2" width="124" height="164" />
+    <Rect x="185" y="570" rx="2" ry="2" width="124" height="15" />
   </ContentLoader>
 );
 

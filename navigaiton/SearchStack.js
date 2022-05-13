@@ -16,7 +16,7 @@ const SearchStack = () => {
       <Stack.Screen
         name="SearchScreen"
         component={SearchScreen}
-        options={{title: 'Movie Information'}}
+        options={{title: 'Search'}}
       />
       <Stack.Screen
         name="Details"

@@ -4,9 +4,7 @@ import Screen from '../components/Screen';
 import Debaounce from '../hooks/useDebounce';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import axios from 'axios';
-import CustomText from '../components/CustomText';
 import SearchResult from '../components/SearchResult';
-import Separator from '../components/Separator';
 
 const SearchScreen = () => {
   const [text, setText] = useState('');

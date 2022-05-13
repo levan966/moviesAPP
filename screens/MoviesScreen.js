@@ -6,7 +6,6 @@ import Screen from '../components/Screen';
 import Movies from '../components/Movies';
 
 const MoviesScreen = ({navigation}) => {
-  // const [result, setResult] = useState([]);
   const [category, setCategory] = useState('movies');
   const [movies, setMovies] = useState([]);
   const [tv, setTv] = useState([]);
