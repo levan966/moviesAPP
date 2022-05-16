@@ -1,9 +1,9 @@
-import {StyleSheet, View, ScrollView} from 'react-native';
 import React, {useEffect, useState} from 'react';
+import {View, ScrollView} from 'react-native';
 import axios from 'axios';
 import CategoryList from '../components/CategoryList';
-import Screen from '../components/Screen';
 import MyLoader from '../components/Loader';
+import Screen from '../components/Screen';
 
 const HomeScreen = ({navigation}) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -15,7 +15,7 @@ const HomeScreen = ({navigation}) => {
     setIsLoading(true);
     axios
       .get(
-        'https://api.themoviedb.org/3/movie/upcoming?api_key=aa130e4e4d10a76fa0af5bf9b913dd35',
+        `https://api.themoviedb.org/3/movie/upcoming?api_key=aa130e4e4d10a76fa0af5bf9b913dd35`,
       )
       .then(response => {
         setUpComing(response.data.results);
@@ -53,31 +53,16 @@ const HomeScreen = ({navigation}) => {
     getTopRated();
   }, []);
 
-  const DATA = [
-    {
-      title: 'Upcoming',
-      data: upComing,
-    },
-    {
-      title: 'Top Rated',
-      data: topRated,
-    },
-    {
-      title: 'Popular',
-      data: popular,
-    },
-  ];
-
   return (
     <Screen>
       {isLoading ? (
         <MyLoader />
       ) : (
         <ScrollView>
-          <View style={styles.screen}>
-            <CategoryList title={DATA[0].title} data={DATA[0].data} />
-            <CategoryList title={DATA[1].title} data={DATA[1].data} />
-            <CategoryList title={DATA[2].title} data={DATA[2].data} />
+          <View>
+            <CategoryList title="Upcoming" data={upComing} />
+            <CategoryList title="Top Rated" data={topRated} />
+            <CategoryList title="Popular" data={popular} />
           </View>
         </ScrollView>
       )}
@@ -86,5 +71,3 @@ const HomeScreen = ({navigation}) => {
 };
 
 export default HomeScreen;
-
-const styles = StyleSheet.create({});

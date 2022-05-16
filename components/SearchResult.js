@@ -1,10 +1,10 @@
 import React from 'react';
 import {StyleSheet, View, Image, TouchableOpacity} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import CustomText from './CustomText';
+import {baseImageUrl} from '../api/links';
 import Separator from './Separator';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {baseImageUrl} from '../api/links';
-import {useNavigation} from '@react-navigation/native';
 
 const SearchResult = ({item}) => {
   const navigation = useNavigation();

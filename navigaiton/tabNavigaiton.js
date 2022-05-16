@@ -2,9 +2,9 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeNavigator from './homeStack';
 import MoviesStack from './moviesStakc';
-import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
-import FavoriteScreen from '../screens/FavoriteScreen';
 import SearchStack from './SearchStack';
+import FavoriteStack from './favoritesStack';
+import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Tab = createBottomTabNavigator();
 
@@ -54,9 +54,10 @@ const TabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Favorites"
-        component={FavoriteScreen}
+        name="FavoriteStack"
+        component={FavoriteStack}
         options={{
+          title: 'Favorites',
           tabBarIcon: ({color, size}) => (
             <Icons name="cards-heart" color={color} size={size} />
           ),

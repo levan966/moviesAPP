@@ -1,15 +1,16 @@
 import React, {useState, useEffect, useCallback} from 'react';
-import {StyleSheet, View, TextInput, FlatList, Text, Image} from 'react-native';
-import Screen from '../components/Screen';
-import Debaounce from '../hooks/useDebounce';
-import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {StyleSheet, View, TextInput, FlatList} from 'react-native';
 import axios from 'axios';
+import Debaounce from '../hooks/useDebounce';
+import Screen from '../components/Screen';
 import SearchResult from '../components/SearchResult';
+import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const SearchScreen = () => {
   const [text, setText] = useState('');
   const [results, setResults] = useState([]);
   const debouncedSearchTerm = Debaounce(text, 500);
+
   const searchMovie = useCallback(() => {
     axios
       .get(
@@ -17,11 +18,8 @@ const SearchScreen = () => {
       )
       .then(response => {
         setResults(response);
-        // console.log('res', response);
       })
-      .catch(error => {
-        console.log('Nooooooo', error);
-      });
+      .catch(error => {});
   }, [debouncedSearchTerm]);
 
   useEffect(() => {

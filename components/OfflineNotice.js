@@ -2,10 +2,9 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {useNetInfo} from '@react-native-community/netinfo';
 import CustomText from './CustomText';
-//
+
 const OfflineNotice = () => {
   const netIfno = useNetInfo();
-  console.log(netIfno);
   if (netIfno.type !== 'unknown' && !netIfno.isInternetReachable) {
     return (
       <View style={styles.container}>

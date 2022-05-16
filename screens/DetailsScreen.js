@@ -1,14 +1,17 @@
 import React, {useState, useEffect, useCallback} from 'react';
 import {StyleSheet, View, Image, ScrollView} from 'react-native';
 import axios from 'axios';
-import CustomText from '../components/CustomText';
+import {baseImageUrl} from '../api/links';
+import {api_key} from '../api/apikey';
+import FavoriteButton from '../components/FavoriteButton';
 import Screen from '../components/Screen';
 import List from '../components/DifList';
-import {baseImageUrl} from '../api/links';
-import FavoriteButton from '../components/FavoriteButton';
+import CustomText from '../components/CustomText';
 
 const DetailsScreen = ({route}) => {
   let {id} = route.params;
+  const baseurl = 'https://api.themoviedb.org/3/movie/';
+
   const [details, setDetails] = useState();
   const [actors, setActors] = useState([]);
   const runTime =
@@ -21,25 +24,17 @@ const DetailsScreen = ({route}) => {
 
   let date = new Date(details?.release_date).getFullYear();
 
-  const baseurl = 'https://api.themoviedb.org/3/movie/';
-  const apiKey = '?api_key=aa130e4e4d10a76fa0af5bf9b913dd35';
-
   const getCast = useCallback(() => {
-    axios.get(`${baseurl}${id}/credits${apiKey}`).then(response => {
+    axios.get(`${baseurl}${id}/credits${api_key}`).then(response => {
       setActors(response.data.cast);
     });
   }, [id]);
 
   const getDetails = useCallback(() => {
-    axios.get(`${baseurl}+${id}+${apiKey}`).then(response => {
+    axios.get(`${baseurl}+${id}+${api_key}`).then(response => {
       setDetails(response.data);
     });
   }, [id]);
-
-  const AddToFavorites = () => {
-    axios.post();
-  };
-  const RemoveFromFavorites = () => {};
 
   useEffect(() => {
     getDetails();
@@ -71,7 +66,7 @@ const DetailsScreen = ({route}) => {
             {details?.poster_path ? (
               <Image
                 source={{
-                  uri: baseImageUrl + details.poster_path,
+                  uri: baseImageUrl + details?.poster_path,
                 }}
                 style={{width: '100%', height: 180}}
               />
@@ -88,9 +83,14 @@ const DetailsScreen = ({route}) => {
                 ))}
             </ScrollView>
             <CustomText numberOfLines={6}>{details?.overview}</CustomText>
+            <CustomText numberOfLines={6}>id = {details?.id}</CustomText>
           </View>
         </View>
-        <FavoriteButton />
+        <FavoriteButton
+          id={id}
+          title={details?.title}
+          poster={details?.poster_path}
+        />
         <List data={actors} title="Cast" />
       </ScrollView>
     </Screen>

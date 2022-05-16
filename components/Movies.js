@@ -1,7 +1,7 @@
-import {StyleSheet, FlatList} from 'react-native';
 import React from 'react';
-import MovieCardComponent from './MovieCardComponent';
+import {FlatList} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import MovieCardComponent from './MovieCardComponent';
 
 const Movies = ({data, setPage}) => {
   const navigation = useNavigation();
@@ -36,5 +36,3 @@ const Movies = ({data, setPage}) => {
 };
 
 export default Movies;
-
-const styles = StyleSheet.create({});

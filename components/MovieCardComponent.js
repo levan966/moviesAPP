@@ -1,8 +1,8 @@
 import React from 'react';
 import {StyleSheet, Text, Image, TouchableOpacity, View} from 'react-native';
-import CustomText from './CustomText';
-import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {baseImageUrl} from '../api/links';
+import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
+import CustomText from './CustomText';
 
 const MovieCardComponent = ({
   style,

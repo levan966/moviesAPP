@@ -1,22 +1,22 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import HomeScreen from '../screens/HomeScreen';
 import DetailsScreen from '../screens/DetailsScreen';
+import FavoriteScreen from '../screens/FavoriteScreen';
 
 const Stack = createNativeStackNavigator();
 
-const HomeStack = () => {
+const FavoriteStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{
+        headerTransparent: true,
         headerTintColor: '#e5e2d4dd',
         animation: 'fade_from_bottom',
-        headerTransparent: true,
       }}>
       <Stack.Screen
-        name="HomeScreen"
-        component={HomeScreen}
-        options={{title: 'Home'}}
+        name="FavoriteScreen"
+        component={FavoriteScreen}
+        options={{title: 'Favorites'}}
       />
       <Stack.Screen
         name="Details"
@@ -27,4 +27,4 @@ const HomeStack = () => {
   );
 };
 
-export default HomeStack;
+export default FavoriteStack;

@@ -1,17 +1,26 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
+import {useSelector, useDispatch} from 'react-redux';
+import * as FavoritesActions from '../store/actions/favorites';
 import Icons from 'react-native-vector-icons/Octicons';
 import CustomText from './CustomText';
 
-const FavoriteButton = (favorite = false) => {
-  const [fav, setFav] = useState(false);
+const FavoriteButton = ({id, title, poster}) => {
+  const dispatch = useDispatch();
+  const allFavorites = useSelector(state => state.favoriteMovies);
+  const [favorite, setFavorite] = useState(false);
+  const allId = allFavorites.favorites.map(e => e.id);
+
+  useEffect(() => {
+    setFavorite(allId.includes(id));
+  }, [allId, id]);
 
   return (
     <>
-      {fav ? (
+      {favorite ? (
         <TouchableOpacity
           onPress={() => {
-            setFav(false);
+            dispatch(FavoritesActions.removeFromFavorites(id));
           }}
           style={[styles.container, styles.added]}>
           <Icons name="check" size={24} color="white" />
@@ -20,7 +29,7 @@ const FavoriteButton = (favorite = false) => {
       ) : (
         <TouchableOpacity
           onPress={() => {
-            setFav(true);
+            dispatch(FavoritesActions.addToFavorites({id, title, poster}));
           }}
           style={styles.container}>
           <Icons name="plus" size={24} />

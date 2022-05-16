@@ -1,8 +1,8 @@
-import {StyleSheet, View, FlatList} from 'react-native';
 import React from 'react';
-import CustomText from './CustomText';
-import MovieCard from './MovieCardComponent';
+import {StyleSheet, View, FlatList} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import MovieCard from './MovieCardComponent';
+import CustomText from './CustomText';
 
 const CategoryList = ({title, data}) => {
   const navigation = useNavigation();

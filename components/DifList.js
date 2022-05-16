@@ -1,7 +1,7 @@
 import {StyleSheet, View, Image, FlatList} from 'react-native';
 import React from 'react';
-import CustomText from './CustomText';
 import {baseImageUrl} from '../api/links';
+import CustomText from './CustomText';
 
 const DifList = ({data, title}) => {
   return (
@@ -17,18 +17,18 @@ const DifList = ({data, title}) => {
         renderItem={({item}) => {
           return (
             <View style={styles.details}>
-              <View style={styles.image}>
+              <View style={styles.imageView}>
                 {item.profile_path == null ? (
                   <Image
+                    style={styles.image}
                     source={{
                       uri: 'https://ru.top50vpn.com/assets/person-default.jpg',
                     }}
-                    style={{width: '100%', height: 180}}
                   />
                 ) : (
                   <Image
+                    style={styles.image}
                     source={{uri: baseImageUrl + item.profile_path}}
-                    style={{width: '100%', height: 180}}
                   />
                 )}
               </View>
@@ -57,9 +57,13 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginBottom: 20,
   },
-  image: {
+  imageView: {
     borderRadius: 10,
     overflow: 'hidden',
+  },
+  image: {
+    width: '100%',
+    height: 180,
   },
   name: {
     paddingVertical: 10,
