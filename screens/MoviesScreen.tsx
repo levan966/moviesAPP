@@ -10,6 +10,10 @@ const MoviesScreen = () => {
     page: number;
     results: Array<MovieType>;
   }
+  interface TvsInterface {
+    page: number;
+    results: Array<TvType>;
+  }
   type MovieType = {
     adult: boolean;
     backdrop_path: string;
@@ -26,10 +30,25 @@ const MoviesScreen = () => {
     vote_average: number;
     vote_count: number;
   };
+  type TvType = {
+    backdrop_path: string;
+    first_air_date: string;
+    genre_ids: Array<number>;
+    name: string;
+    origin_country: Array<string>;
+    original_language: string;
+    original_name: string;
+    overview: string;
+    popularity: number;
+    poster_path: string;
+    vote_average: number;
+    vote_count: number;
+  };
+
   const [category, setCategory] = useState('movies');
-  const [movies, setMovies] = useState<any>([]);
-  const [tv, setTv] = useState([]);
-  const [page, setPage] = useState(1);
+  const [movies, setMovies] = useState<Array<MoviesInterface>>([]);
+  const [tv, setTv] = useState<Array<TvsInterface>>([]);
+  const [page, setPage] = useState<number>(1);
 
   const getMovies = useCallback(() => {
     axios
@@ -38,16 +57,14 @@ const MoviesScreen = () => {
       )
       .then(response => {
         setPage(response.data.page);
-        setMovies((results: Array<MovieType>) => {
-          return [...results, ...response.data.results];
-        });
+        setMovies(results => [...results, ...response.data.results]);
       });
   }, [page]);
 
   const getTVSeries = useCallback(() => {
     axios
       .get(
-        'https://api.themoviedb.org/3/tv/popular?api_key=aa130e4e4d10a76fa0af5bf9b913dd35',
+        `https://api.themoviedb.org/3/tv/popular?api_key=aa130e4e4d10a76fa0af5bf9b913dd35&page=${page}`,
       )
       .then(response => {
         setPage(response.data.page);
@@ -63,7 +80,7 @@ const MoviesScreen = () => {
     } else {
       getTVSeries();
     }
-  }, [page, category, getMovies]);
+  }, [page, category]);
 
   return (
     <Screen>
