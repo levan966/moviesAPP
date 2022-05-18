@@ -11,7 +11,6 @@ import CustomText from '../components/CustomText';
 const DetailsScreen = ({route}) => {
   let {id} = route.params;
   const baseurl = 'https://api.themoviedb.org/3/movie/';
-
   const [details, setDetails] = useState();
   const [actors, setActors] = useState([]);
   const runTime =

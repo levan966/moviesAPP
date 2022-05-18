@@ -11,7 +11,6 @@ const FavoriteScreen = () => {
   const numOfResults = allFavorites.favorites.length;
   return (
     <Screen>
-      {/* <CustomText style={styles.text}>Favorites</CustomText> */}
       <FlatList
         ListHeaderComponent={<NumberOfResults {...{numOfResults}} />}
         showsVerticalScrollIndicator={false}

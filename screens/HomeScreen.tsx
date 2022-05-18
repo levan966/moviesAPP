@@ -5,7 +5,7 @@ import CategoryList from '../components/CategoryList';
 import MyLoader from '../components/Loader';
 import Screen from '../components/Screen';
 
-const HomeScreen = ({navigation}) => {
+const HomeScreen = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [popular, setPopular] = useState();
   const [topRated, setTopRated] = useState();

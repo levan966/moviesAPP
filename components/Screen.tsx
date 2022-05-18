@@ -1,8 +1,19 @@
-import React from 'react';
-import {SafeAreaView, StyleSheet, View, StatusBar} from 'react-native';
+import React, {ReactNode} from 'react';
+import {
+  SafeAreaView,
+  StyleSheet,
+  View,
+  StatusBar,
+  ViewStyle,
+} from 'react-native';
 import OfflineNotice from './OfflineNotice';
 
-const Screen = ({children, style}) => {
+type Props = {
+  children: ReactNode;
+  style?: ViewStyle;
+};
+
+const Screen = ({children, style}: Props) => {
   return (
     <>
       <SafeAreaView style={[styles.screen, style]}>

@@ -5,9 +5,29 @@ import CustomText from '../components/CustomText';
 import Screen from '../components/Screen';
 import Movies from '../components/Movies';
 
-const MoviesScreen = ({navigation}) => {
+const MoviesScreen = () => {
+  interface MoviesInterface {
+    page: number;
+    results: Array<MovieType>;
+  }
+  type MovieType = {
+    adult: boolean;
+    backdrop_path: string;
+    genre_ids: Array<number>;
+    id: number;
+    original_language: string;
+    original_title: string;
+    overview: string;
+    popularity: number;
+    poster_path: string;
+    release_date: string;
+    title: string;
+    video: boolean;
+    vote_average: number;
+    vote_count: number;
+  };
   const [category, setCategory] = useState('movies');
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState<any>([]);
   const [tv, setTv] = useState([]);
   const [page, setPage] = useState(1);
 
@@ -18,20 +38,24 @@ const MoviesScreen = ({navigation}) => {
       )
       .then(response => {
         setPage(response.data.page);
-        setMovies(results => [...results, ...response.data.results]);
+        setMovies((results: Array<MovieType>) => {
+          return [...results, ...response.data.results];
+        });
       });
   }, [page]);
 
-  const getTVSeries = () => {
+  const getTVSeries = useCallback(() => {
     axios
       .get(
         'https://api.themoviedb.org/3/tv/popular?api_key=aa130e4e4d10a76fa0af5bf9b913dd35',
       )
       .then(response => {
         setPage(response.data.page);
-        setTv(results => [...results, ...response.data.results]);
+        setTv((results): any => {
+          return [...results, ...response.data.results];
+        });
       });
-  };
+  }, [page]);
 
   useEffect(() => {
     if (category === 'movies') {
