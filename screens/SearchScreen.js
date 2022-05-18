@@ -11,15 +11,20 @@ const SearchScreen = () => {
   const [results, setResults] = useState([]);
   const debouncedSearchTerm = Debaounce(text, 500);
 
-  const searchMovie = useCallback(() => {
+  const searchMovie = useCallback(async () => {
+    console.log('111');
     axios
       .get(
-        `https://api.themoviedb.org/3/search/movie/?api_key=aa130e4e4d10a76fa0af5bf9b913dd35&query=${debouncedSearchTerm}`,
+        `https://api.themoviedb.org/3/search/multi/?api_key=aa130e4e4d10a76fa0af5bf9b913dd35&query=${debouncedSearchTerm}`,
       )
       .then(response => {
+        console.log('Yeeeeeees');
         setResults(response);
+        console.log('2222');
       })
-      .catch(error => {});
+      .catch(error => {
+        console.log('noooooooo', error);
+      });
   }, [debouncedSearchTerm]);
 
   useEffect(() => {

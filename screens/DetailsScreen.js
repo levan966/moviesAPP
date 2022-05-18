@@ -83,7 +83,6 @@ const DetailsScreen = ({route}) => {
                 ))}
             </ScrollView>
             <CustomText numberOfLines={6}>{details?.overview}</CustomText>
-            <CustomText numberOfLines={6}>id = {details?.id}</CustomText>
           </View>
         </View>
         <FavoriteButton
