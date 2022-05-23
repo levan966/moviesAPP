@@ -4,51 +4,13 @@ import axios from 'axios';
 import CustomText from '../components/CustomText';
 import Screen from '../components/Screen';
 import Movies from '../components/Movies';
+import {MoviesInterface, TvsInterface} from '../types/API';
 
 const MoviesScreen = () => {
-  interface MoviesInterface {
-    page: number;
-    results: Array<MovieType>;
-  }
-  interface TvsInterface {
-    page: number;
-    results: Array<TvType>;
-  }
-  type MovieType = {
-    adult: boolean;
-    backdrop_path: string;
-    genre_ids: Array<number>;
-    id: number;
-    original_language: string;
-    original_title: string;
-    overview: string;
-    popularity: number;
-    poster_path: string;
-    release_date: string;
-    title: string;
-    video: boolean;
-    vote_average: number;
-    vote_count: number;
-  };
-  type TvType = {
-    backdrop_path: string;
-    first_air_date: string;
-    genre_ids: Array<number>;
-    name: string;
-    origin_country: Array<string>;
-    original_language: string;
-    original_name: string;
-    overview: string;
-    popularity: number;
-    poster_path: string;
-    vote_average: number;
-    vote_count: number;
-  };
-
   const [category, setCategory] = useState('movies');
-  const [movies, setMovies] = useState<Array<MoviesInterface>>([]);
+  const [movies, setMovies] = useState<MoviesInterface[]>([]);
   const [tv, setTv] = useState<Array<TvsInterface>>([]);
-  const [page, setPage] = useState<number>(1);
+  const [page, setPage] = useState();
 
   const getMovies = useCallback(() => {
     axios

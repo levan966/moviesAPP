@@ -7,8 +7,44 @@ import SearchResult from '../components/SearchResult';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const SearchScreen = () => {
+  type SearchMovieType = {
+    adult: boolean;
+    backdrop_path: string;
+    genre_ids: Array<number>;
+    id: number;
+    media_type: string;
+    original_language: string;
+    original_title: string;
+    overview: string;
+    popularity: number;
+    poster_path: string;
+    release_date: string;
+    title: string;
+    video: boolean;
+    vote_average: number;
+    vote_count: number;
+  };
+  type SearchTvType = {
+    backdrop_path: string;
+    first_air_date: string;
+    genre_ids: Array<number>;
+    id: number;
+    media_type: string;
+    name: string;
+    origin_country: Array<string>;
+    original_language: string;
+    original_name: string;
+    overview: string;
+    popularity: number;
+    poster_path: string;
+    vote_average: number;
+    vote_count: number;
+  };
+
   const [text, setText] = useState('');
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState<Array<SearchTvType | SearchMovieType>>(
+    [],
+  );
   const debouncedSearchTerm = Debaounce(text, 500);
 
   const searchMovie = useCallback(async () => {
@@ -19,7 +55,7 @@ const SearchScreen = () => {
       )
       .then(response => {
         console.log('Yeeeeeees');
-        setResults(response);
+        setResults(response.data.results);
         console.log('2222');
       })
       .catch(error => {
@@ -55,7 +91,7 @@ const SearchScreen = () => {
       </View>
       <FlatList
         style={styles.listResult}
-        data={results.data?.results}
+        data={results}
         renderItem={({item}) => <SearchResult item={item} />}
       />
     </Screen>

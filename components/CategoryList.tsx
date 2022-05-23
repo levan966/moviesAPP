@@ -3,9 +3,20 @@ import {StyleSheet, View, FlatList} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import MovieCard from './MovieCardComponent';
 import CustomText from './CustomText';
+import {MovieType} from '../types/API';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {RootStackParamList} from '../types/navigation';
 
-const CategoryList = ({title, data}) => {
-  const navigation = useNavigation();
+type Props = {
+  title: string;
+  data: MovieType[] | undefined;
+};
+
+const CategoryList = ({title, data}: Props) => {
+  const navigation =
+    useNavigation<
+      NativeStackNavigationProp<RootStackParamList, 'HomeScreen'>
+    >();
 
   return (
     <View style={styles.container}>
@@ -19,7 +30,6 @@ const CategoryList = ({title, data}) => {
           renderItem={({item}) => {
             return (
               <MovieCard
-                id={item.id}
                 title={item.original_title}
                 poster_path={item.poster_path}
                 grade={item.vote_average}

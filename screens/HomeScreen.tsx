@@ -4,12 +4,13 @@ import axios from 'axios';
 import CategoryList from '../components/CategoryList';
 import MyLoader from '../components/Loader';
 import Screen from '../components/Screen';
+import {MovieType} from '../types/API';
 
 const HomeScreen = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [popular, setPopular] = useState();
-  const [topRated, setTopRated] = useState();
-  const [upComing, setUpComing] = useState();
+  const [popular, setPopular] = useState<MovieType[]>();
+  const [topRated, setTopRated] = useState<MovieType[]>();
+  const [upComing, setUpComing] = useState<MovieType[]>();
 
   const getUpcoming = () => {
     setIsLoading(true);

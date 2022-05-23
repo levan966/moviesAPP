@@ -1,8 +1,29 @@
 import React from 'react';
-import {StyleSheet, Text, Image, TouchableOpacity, View} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  Image,
+  TouchableOpacity,
+  View,
+  StyleProp,
+  ViewStyle,
+} from 'react-native';
 import {baseImageUrl} from '../api/links';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import CustomText from './CustomText';
+
+type Props = {
+  style?: StyleProp<ViewStyle>;
+  title: string;
+  onPress: () => void;
+  poster_path: string;
+  grade: number | null | undefined;
+  cardWidth?: number;
+  cardHeight?: number;
+  borderRadius?: number;
+  marginLeft?: number;
+  marginTop?: number;
+};
 
 const MovieCardComponent = ({
   style,
@@ -15,12 +36,12 @@ const MovieCardComponent = ({
   borderRadius = 5,
   marginLeft = 20,
   marginTop = 10,
-}) => {
+}: Props) => {
   return (
     <TouchableOpacity onPress={onPress} style={style}>
       <View style={{width: cardWidth, marginLeft: marginLeft}}>
         <Image
-          style={[styles.image, {height: cardHeight, borderRadius, marginTop}]}
+          style={[{height: cardHeight, borderRadius, marginTop}]}
           source={{uri: baseImageUrl + poster_path}}
         />
         <View style={styles.info}>

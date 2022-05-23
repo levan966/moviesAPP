@@ -7,21 +7,22 @@ import FavoriteButton from '../components/FavoriteButton';
 import Screen from '../components/Screen';
 import List from '../components/DifList';
 import CustomText from '../components/CustomText';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {RouteProp} from '@react-navigation/native';
+import {RootStackParamList} from '../types/navigation';
+import {DetailsType} from '../types/API';
 
-const DetailsScreen = ({route}) => {
+type Props = {
+  navigation: NativeStackNavigationProp<RootStackParamList, 'Details'>;
+  route: RouteProp<RootStackParamList, 'Details'>;
+};
+
+const DetailsScreen = ({navigation, route}: Props) => {
   let {id} = route.params;
   const baseurl = 'https://api.themoviedb.org/3/movie/';
-  const [details, setDetails] = useState();
-  const [actors, setActors] = useState([]);
-  const runTime =
-    Math.trunc(details?.runtime / 60) +
-    'h' +
-    '\xa0' +
-    '\xa0' +
-    (details?.runtime % 60) +
-    'm';
 
-  let date = new Date(details?.release_date).getFullYear();
+  const [details, setDetails] = useState<DetailsType>();
+  const [actors, setActors] = useState([]);
 
   const getCast = useCallback(() => {
     axios.get(`${baseurl}${id}/credits${api_key}`).then(response => {
@@ -40,6 +41,19 @@ const DetailsScreen = ({route}) => {
     getCast();
   }, [getCast, getDetails]);
 
+  let MovierunTime;
+  let date;
+  if (details) {
+    MovierunTime =
+      Math.trunc(details?.runtime / 60) +
+      'h' +
+      '\xa0' +
+      '\xa0' +
+      (details?.runtime % 60) +
+      'm';
+    date = new Date(details?.release_date).getFullYear();
+  }
+
   return (
     <Screen>
       <ScrollView>
@@ -50,7 +64,7 @@ const DetailsScreen = ({route}) => {
           <View style={{flexDirection: 'row'}}>
             <CustomText style={[styles.date]}>{date}</CustomText>
             <CustomText style={[styles.date, {marginLeft: 20}]}>
-              {runTime}
+              {MovierunTime}
             </CustomText>
           </View>
         </View>

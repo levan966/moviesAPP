@@ -1,7 +1,16 @@
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import React, {ReactNode} from 'react';
+import {
+  StyleProp,
+  StyleSheet,
+  Text,
+  TextProps,
+  View,
+  ViewStyle,
+} from 'react-native';
 
-const CustomText = ({children, style, ...otherProps}) => {
+interface Props extends TextProps {}
+
+const CustomText = ({children, style, ...otherProps}: Props) => {
   return (
     <View>
       <Text {...otherProps} style={[styles.headerTitle, style]}>
