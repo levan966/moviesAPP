@@ -7,7 +7,6 @@ import {CastType} from '../types/API';
 type Props = {
   title: string;
   data: Array<CastType>;
-  View: ViewStyle;
 };
 
 const DifList = ({data, title}: Props) => {
