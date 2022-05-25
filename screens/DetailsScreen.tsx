@@ -1,38 +1,38 @@
 import React, {useState, useEffect, useCallback} from 'react';
 import {StyleSheet, View, Image, ScrollView} from 'react-native';
 import axios from 'axios';
-import {baseImageUrl} from '../api/links';
 import {api_key} from '../api/apikey';
+import {baseImageUrl} from '../api/links';
 import FavoriteButton from '../components/FavoriteButton';
 import Screen from '../components/Screen';
 import List from '../components/DifList';
 import CustomText from '../components/CustomText';
+
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RouteProp} from '@react-navigation/native';
 import {RootStackParamList} from '../types/navigation';
-import {DetailsType} from '../types/API';
+import {CastType, DetailsType} from '../types/API';
 
 type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Details'>;
   route: RouteProp<RootStackParamList, 'Details'>;
 };
 
-const DetailsScreen = ({navigation, route}: Props) => {
+const DetailsScreen = ({route}: Props) => {
   let {id} = route.params;
   const baseurl = 'https://api.themoviedb.org/3/movie/';
-
   const [details, setDetails] = useState<DetailsType>();
-  const [actors, setActors] = useState([]);
-
-  const getCast = useCallback(() => {
-    axios.get(`${baseurl}${id}/credits${api_key}`).then(response => {
-      setActors(response.data.cast);
-    });
-  }, [id]);
+  const [actors, setActors] = useState<Array<CastType>>([]);
+  console.log(actors);
 
   const getDetails = useCallback(() => {
     axios.get(`${baseurl}+${id}+${api_key}`).then(response => {
       setDetails(response.data);
+    });
+  }, [id]);
+  const getCast = useCallback(() => {
+    axios.get(`${baseurl}${id}/credits${api_key}`).then(response => {
+      setActors(response.data.cast);
     });
   }, [id]);
 
@@ -43,6 +43,7 @@ const DetailsScreen = ({navigation, route}: Props) => {
 
   let MovierunTime;
   let date;
+
   if (details) {
     MovierunTime =
       Math.trunc(details?.runtime / 60) +

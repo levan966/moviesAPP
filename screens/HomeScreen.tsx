@@ -8,9 +8,9 @@ import {MovieType} from '../types/API';
 
 const HomeScreen = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [popular, setPopular] = useState<MovieType[]>();
-  const [topRated, setTopRated] = useState<MovieType[]>();
-  const [upComing, setUpComing] = useState<MovieType[]>();
+  const [popular, setPopular] = useState<Array<MovieType>>();
+  const [topRated, setTopRated] = useState<Array<MovieType>>();
+  const [upComing, setUpComing] = useState<Array<MovieType>>();
 
   const getUpcoming = () => {
     setIsLoading(true);

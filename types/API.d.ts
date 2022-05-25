@@ -68,16 +68,62 @@ export type DetailsType = {
   vote_average: number;
   vote_count: number;
 };
-
+type belongs_to_collectionType = {
+  id: number;
+  name: string;
+  poster_path: string;
+  backdrop_path: string;
+};
 type production_companies_Type = {
   id: number;
   logo_path: string | null;
   name: string;
   origin_country: string;
 };
-type belongs_to_collectionType = {
+export type CastType = {
+  adult: boolean;
+  gender: number;
   id: number;
+  known_for_department: string;
   name: string;
-  poster_path: string;
+  original_name: string;
+  popularity: number;
+  profile_path: string;
+  cast_id: number;
+  character: string;
+  credit_id: string;
+  order: number;
+};
+export type SearchTvType = {
   backdrop_path: string;
+  first_air_date: string;
+  genre_ids: Array<number>;
+  id: number;
+  media_type: string;
+  name: string;
+  origin_country: Array<string>;
+  original_language: string;
+  original_name: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  vote_average: number;
+  vote_count: number;
+};
+export type SearchMovieType = {
+  adult: boolean;
+  backdrop_path: string;
+  genre_ids: Array<number>;
+  id: number;
+  media_type: string;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  release_date: string;
+  title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
 };

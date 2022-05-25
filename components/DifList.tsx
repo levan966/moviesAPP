@@ -1,12 +1,19 @@
-import {StyleSheet, View, Image, FlatList} from 'react-native';
+import {StyleSheet, View, Image, FlatList, ViewStyle} from 'react-native';
 import React from 'react';
 import {baseImageUrl} from '../api/links';
 import CustomText from './CustomText';
+import {CastType} from '../types/API';
 
-const DifList = ({data, title}) => {
+type Props = {
+  title: string;
+  data: Array<CastType>;
+  View: ViewStyle;
+};
+
+const DifList = ({data, title}: Props) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.title}>
+    <View>
+      <View>
         <CustomText style={styles.text}>{title}</CustomText>
       </View>
       <FlatList

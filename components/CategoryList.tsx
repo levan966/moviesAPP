@@ -9,7 +9,7 @@ import {RootStackParamList} from '../types/navigation';
 
 type Props = {
   title: string;
-  data: MovieType[] | undefined;
+  data: Array<MovieType> | undefined;
 };
 
 const CategoryList = ({title, data}: Props) => {
