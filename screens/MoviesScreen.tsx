@@ -10,7 +10,7 @@ const MoviesScreen = () => {
   const [category, setCategory] = useState('movies');
   const [movies, setMovies] = useState<MoviesInterface[]>([]);
   const [tv, setTv] = useState<Array<TvsInterface>>([]);
-  const [page, setPage] = useState();
+  const [page, setPage] = useState<number>();
 
   const getMovies = useCallback(() => {
     axios
@@ -30,7 +30,7 @@ const MoviesScreen = () => {
       )
       .then(response => {
         setPage(response.data.page);
-        setTv((results): any => {
+        setTv(results => {
           return [...results, ...response.data.results];
         });
       });

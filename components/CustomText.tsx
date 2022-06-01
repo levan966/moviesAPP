@@ -1,12 +1,5 @@
-import React, {ReactNode} from 'react';
-import {
-  StyleProp,
-  StyleSheet,
-  Text,
-  TextProps,
-  View,
-  ViewStyle,
-} from 'react-native';
+import React from 'react';
+import {StyleSheet, Text, TextProps, View} from 'react-native';
 
 interface Props extends TextProps {}
 

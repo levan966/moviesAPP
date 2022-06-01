@@ -11,7 +11,7 @@ const Tab = createBottomTabNavigator();
 const TabNavigator = () => {
   return (
     <Tab.Navigator
-      screenOptions={({route, navigation}) => ({
+      screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: '#ca9f32',
         tabBarInactiveTintColor: '#e4dfd4',
@@ -19,13 +19,14 @@ const TabNavigator = () => {
           marginTop: 0,
           fontSize: 13,
         },
+
         tabBarStyle: {
           paddingHorizontal: 10,
           paddingTop: 5,
           backgroundColor: 'rgba(34,36,40,1)',
-          borderTopWidth: null,
+          borderTopWidth: 0,
         },
-      })}>
+      }}>
       <Tab.Screen
         name="Home"
         component={HomeNavigator}

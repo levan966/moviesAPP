@@ -3,7 +3,6 @@ import {FlatList, StyleSheet} from 'react-native';
 import {useSelector} from 'react-redux';
 import Screen from '../components/Screen';
 import FavoriteCard from '../components/FavoriteCard';
-import CustomText from '../components/CustomText';
 import NumberOfResults from '../components/NumberOfResults';
 
 const FavoriteScreen = () => {

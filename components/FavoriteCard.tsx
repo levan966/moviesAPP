@@ -7,10 +7,19 @@ import {baseImageUrl} from '../api/links';
 import CustomText from './CustomText';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Separator from './Separator';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {RootStackParamListMovies} from '../types/navigation';
 
-const FavoriteCard = ({id, title, poster}) => {
+type Props = {
+  id: number;
+  title: string;
+  poster: string;
+};
+
+const FavoriteCard = ({id, title, poster}: Props) => {
   const dispatch = useDispatch();
-  const navigation = useNavigation();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamListMovies>>();
   return (
     <>
       <View style={styles.container}>
